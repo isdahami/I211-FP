@@ -1,0 +1,50 @@
+/* BODY / HTML STYLING */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* END OF BODY / HTML STYLING */
+
+/* LANDING PAGE */
+.vin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+}
+.pop-films-txt {
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+a {
+  color: #000;
+}
+a:hover {
+  text-decoration: none;
+}
+.card-hover:hover {
+  color: white;
+}
+
+.card-border-bb {
+  border-bottom: 2px solid #000;
+}
+/* LANDING PAGE */
+
+/* FOOTER STYLING */
+.footer-custom {
+  background-color: #343a40;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+/* END OF FOOTER STYLING */
