@@ -45,7 +45,7 @@
                 <?php foreach ($vinyls as $vinyl) : ?>
                     <div class="col-md-3 mb-4">
                         <div class="card bg-secondary text-white">
-                        <a class="card-hover" href="<?= base_url('/home/vinylDetails/' . $vinyl['id']) ?>">
+                        <a class="card-hover" href="<?= base_url('/vinyls/vinylDetails/' . $vinyl['id']) ?>">
                             <img src="<?= base_url('assets/images/I211_Final_Images/' . $vinyl['vinyl_image']) ?>" class="card-img-top card-border-bb" alt="<?= $vinyl['vinyl_name'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $vinyl['vinyl_name'] ?></h5>

@@ -34,4 +34,5 @@ class VinylsController extends BaseController
         $data['vinyl'] = $vinyl;
         return view('vinyls/vinylDetails', $data);
     }
+
 }

@@ -8,7 +8,9 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/profile', 'ProfileController::index');
 $routes->get('/vinyls', 'VinylsController::index');
-$routes->get('/home/vinylDetails/(:num)', 'VinylsController::vinylDetails/$1');
+$routes->get('/vinyls/vinylDetails/(:num)', 'VinylsController::vinylDetails/$1');
+
+
 
 
 service('auth')->routes($routes);
