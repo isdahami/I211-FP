@@ -20,35 +20,45 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-                <li class="nav-item <?= (service('request')->uri->getSegment(1) == '') ? 'active' : '' ?>">
+                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'home') ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= site_url('/') ?>">HOME</a>
                 </li>
                 
-                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'films') ? 'active' : '' ?>">
+                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'vinyls') ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= site_url('/vinyls') ?>">VINYLS</a>
+                </li>
+
+                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'cart') ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?= site_url('/cart') ?>">CART</a>
                 </li>
             
                 
                 <?php if(auth()->loggedIn()): ?>
-                    <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'profile') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= site_url('/profile') ?>">PROFILE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= url_to('logout') ?>">LOGOUT</a>
-                    </li>
-                <?php else: ?>  
-                    
-                    <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'register') ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= url_to('register') ?>">REGISTER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= url_to('login') ?>">LOGIN</a>
+                <?php if(auth()->user()->status == 'admin'): ?>
+                    <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'admin') ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?= site_url('/admin') ?>">ADMIN</a>
                     </li>
                 <?php endif; ?>
-            </ul>
+                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'profile') ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?= site_url('/profile') ?>">PROFILE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= url_to('logout') ?>">LOGOUT</a>
+                </li>
+                <?php else: ?>
+                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'register') ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?= url_to('register') ?>">REGISTER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= url_to('login') ?>">LOGIN</a>
+                </li>
+                <?php endif; ?>
+             </ul>
             <div class="input-group" style="max-width: 200px;">
-                <input type="search" class="form-control rounded" placeholder="SEARCH" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init><i class="fas fa-search"></i></button>
+                <form action="<?= base_url('search'); ?>" method="post" class="d-flex align-items-center">
+                    <input type="search" name="search" class="form-control rounded" placeholder="SEARCH" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init><i class="fas fa-search"></i></button>
+                </form>
             </div>
         </div>
     </nav>
