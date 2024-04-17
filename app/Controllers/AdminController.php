@@ -21,11 +21,10 @@ class AdminController extends BaseController
         return $user ['status'] === 'admin';
     }
 
-    public function addNew()
-    {
+    public function addNew() {
         // Check if the current user has admin privileges
         if (!$this->isAdmin()) {
-            // Redirect or show error message
+            // Redirect 
             return redirect()->to('/');
         }
 
@@ -33,11 +32,10 @@ class AdminController extends BaseController
         return view('admin/addNew');
     }
 
-    public function saveNew()
-{
+    public function saveNew() {
     // Check if the current user has admin privileges
     if (!$this->isAdmin()) {
-        // Redirect or show error message
+        // Redirect 
         return redirect()->to('/');
     }
 
@@ -68,7 +66,7 @@ class AdminController extends BaseController
 
     
 
-    // Redirect to a success page or show a success message
+    // Redirect 
     return view('admin/addNew');
 }
 

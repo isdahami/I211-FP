@@ -39,9 +39,7 @@
                         <a class="nav-link" href="<?= site_url('/admin') ?>">ADMIN</a>
                     </li>
                 <?php endif; ?>
-                <li class="nav-item <?= (service('request')->uri->getSegment(1) == 'profile') ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= site_url('/profile') ?>">PROFILE</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="<?= url_to('logout') ?>">LOGOUT</a>
                 </li>
