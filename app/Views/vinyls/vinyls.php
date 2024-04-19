@@ -6,7 +6,26 @@
             <div class="vin-header mt-4">
                 <h3 class="vin-txt">VINYLS</h3>
             </div>
+
+            <form action="<?= base_url('/vinyls') ?>" method="post" class="mt-4">
+                <select name="genre" id="genreFilter" class="btn-secondary">
+                    <option value="">All Genres</option>
+                    <option value="Country">Country</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Hip-Hop & Rap">Hip-Hop & Rap</option>
+                    <option value="Pop">Pop</option>
+                    <option value="R&B & Soul">R&B & Soul</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="Latin">Latin</option>
+                    <option value="Alternative">Alternative</option>
+                    <option value="Electronic">Electronic</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Apply Filter</button>
+            </form>
     </div>
+
+    
 
     <div class="container">
             <div class="row mt-4">

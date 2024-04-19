@@ -22,12 +22,40 @@ class VinylModel extends Model {
         return $this->findAll();
     }
 
+
+    public function getSuggestions($query)
+    {
+        // Perform a database query to fetch suggestions based on the query
+        $builder = $this->builder();
+        $builder->like('vinyl_name', $query);
+        $builder->orLike('vinyl_genre', $query); 
+        $builder->orLike('vinyl_artist', $query); 
+        $results = $builder->get()->getResultArray();
+
+        // Prepare suggestions array with both vinyl ID and vinyl name
+        $suggestions = [];
+        foreach ($results as $result) {
+            $suggestions[] = [
+                'id' => $result['id'], 
+                'name' => $result['vinyl_name'],
+                'genre' => $result['vinyl_genre'],
+                'artist' => $result['vinyl_artist'],
+            ];
+        }
+
+        return $suggestions;
+    }
+
+
     
     // method that allows for searching
     public function searchVinyls($criteria)
     {
         // Extract the search query from the criteria array
         $searchQuery = $criteria['search'] ?? ''; 
+
+        // change so that multiple search features ex: mac rap
+        // auto suggest
 
         // Build the query to search for matching vinyls
         $builder = $this->builder();
@@ -42,5 +70,12 @@ class VinylModel extends Model {
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+    public function getVinylsByGenre($genre)
+    {
+        return $this->where('vinyl_genre', $genre)->findAll(); 
+    }
+
+    
 
 }

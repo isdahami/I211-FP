@@ -33,42 +33,42 @@ class AdminController extends BaseController
     }
 
     public function saveNew() {
-    // Check if the current user has admin privileges
-    if (!$this->isAdmin()) {
+        // Check if the current user has admin privileges
+        if (!$this->isAdmin()) {
+            // Redirect 
+            return redirect()->to('/');
+        }
+
+        // Load the VinylModel
+        $vinylModel = new \App\Models\VinylModel();
+
+        // Process form submission
+        $vinylName = $this->request->getPost('vinyl_name');
+        $vinylDesc = $this->request->getPost('vinyl_desc');
+        $vinylArtist = $this->request->getPost('vinyl_artist');
+        $vinylGenre = $this->request->getPost('vinyl_genre');
+        $vinylPrice = $this->request->getPost('vinyl_price');
+        $vinylImage = $this->request->getFile('vinyl_image');
+
+        $originalFileName = $vinylImage->getName();
+
+        // Insert new record into the vinyl_info table
+        $data = [
+            'vinyl_name' => $vinylName,
+            'vinyl_desc' => $vinylDesc,
+            'vinyl_artist' => $vinylArtist,
+            'vinyl_genre' => $vinylGenre,
+            'vinyl_price' => $vinylPrice,
+            'vinyl_image' => $originalFileName
+        ];
+
+        $vinylModel->insert($data);
+
+        
+
         // Redirect 
-        return redirect()->to('/');
+        return view('admin/addNew');
     }
-
-    // Load the VinylModel
-    $vinylModel = new \App\Models\VinylModel();
-
-    // Process form submission
-    $vinylName = $this->request->getPost('vinyl_name');
-    $vinylDesc = $this->request->getPost('vinyl_desc');
-    $vinylArtist = $this->request->getPost('vinyl_artist');
-    $vinylGenre = $this->request->getPost('vinyl_genre');
-    $vinylPrice = $this->request->getPost('vinyl_price');
-    $vinylImage = $this->request->getFile('vinyl_image');
-
-    $originalFileName = $vinylImage->getName();
-
-    // Insert new record into the vinyl_info table
-    $data = [
-        'vinyl_name' => $vinylName,
-        'vinyl_desc' => $vinylDesc,
-        'vinyl_artist' => $vinylArtist,
-        'vinyl_genre' => $vinylGenre,
-        'vinyl_price' => $vinylPrice,
-        'vinyl_image' => $originalFileName
-    ];
-
-    $vinylModel->insert($data);
-
-    
-
-    // Redirect 
-    return view('admin/addNew');
-}
 
 
 }

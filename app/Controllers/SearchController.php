@@ -23,4 +23,19 @@ class SearchController extends BaseController
         // Load the search results view
         return view('search/searchResults', $data);
     }
+
+    
+    public function suggest()
+    {
+        $query = $this->request->getGet('query');
+        
+        // Load the VinylModel
+        $vinylModel = new VinylModel();
+
+        // Get suggestions based on the query
+        $suggestions = $vinylModel->getSuggestions($query);
+
+        return $this->response->setJSON($suggestions);
+    }
+
 }

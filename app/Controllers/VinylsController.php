@@ -14,8 +14,18 @@ class VinylsController extends BaseController
         // Retrieve all vinyls from the model
         $allVinyls = $vinylModel->getAllVinyls();
 
-        // Pass the vinyls to the view
-        $data['allVinyls'] = $allVinyls;
+        // Check if filter criteria is submitted
+        $selectedGenre = $this->request->getPost('genre');
+
+        // Filter vinyls by genre if filter criteria is submitted
+        if (!empty($selectedGenre)) {
+            $filteredVinyls = $vinylModel->getVinylsByGenre($selectedGenre);
+        } else {
+            $filteredVinyls = $allVinyls;
+        }
+
+        // Pass the filtered vinyls to the view
+        $data['allVinyls'] = $filteredVinyls;
 
         return view('vinyls/vinyls.php', $data);
     }
@@ -34,5 +44,7 @@ class VinylsController extends BaseController
         $data['vinyl'] = $vinyl;
         return view('vinyls/vinylDetails', $data);
     }
+
+   
 
 }
